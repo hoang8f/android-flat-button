@@ -3,7 +3,6 @@ package info.hoang8f.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.LightingColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -29,6 +28,8 @@ public class FButton extends Button implements View.OnTouchListener {
     private int mShadowColor;
     private int mShadowHeight;
     private int mCornerRadius;
+
+    boolean isShadowColorDefined = false;
 
     public FButton(Context context) {
         super(context);
@@ -66,8 +67,6 @@ public class FButton extends Button implements View.OnTouchListener {
                             getResources().getDimensionPixelSize(R.dimen.default_padding_top),
                             getResources().getDimensionPixelSize(R.dimen.default_padding_right),
                             0);
-                } else {
-                    setColorFilter(view, 0x6D6D6D);
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -79,8 +78,6 @@ public class FButton extends Button implements View.OnTouchListener {
                                 getResources().getDimensionPixelSize(R.dimen.default_shadow_height),
                                 getResources().getDimensionPixelSize(R.dimen.default_padding_right),
                                 getResources().getDimensionPixelSize(R.dimen.default_shadow_height));
-                    } else {
-                        setColorFilter(view, null);
                     }
                 }
                 break;
@@ -92,23 +89,10 @@ public class FButton extends Button implements View.OnTouchListener {
                             getResources().getDimensionPixelSize(R.dimen.default_shadow_height),
                             getResources().getDimensionPixelSize(R.dimen.default_padding_right),
                             getResources().getDimensionPixelSize(R.dimen.default_shadow_height));
-                } else {
-                    setColorFilter(view, null);
                 }
                 break;
         }
         return false;
-    }
-
-    private void setColorFilter(View v, Integer filter) {
-        if (filter == null) {
-            v.getBackground().clearColorFilter();
-        } else {
-            LightingColorFilter darken = new LightingColorFilter(filter, 0x000000);
-            v.getBackground().setColorFilter(darken);
-        }
-        // required on Android 2.3.7 for filter change to take effect (but not on 4.0.4)
-        v.getBackground().invalidateSelf();
     }
 
     public void setShadowEnabled(boolean isShadowEnabled) {
@@ -136,6 +120,7 @@ public class FButton extends Button implements View.OnTouchListener {
                 mButtonColor = typedArray.getColor(attr, R.color.button_default_color);
             } else if (attr == R.styleable.FButton_shadowColor) {
                 mShadowColor = typedArray.getColor(attr, R.color.button_default_shadow_color);
+                isShadowColorDefined = true;
             } else if (attr == R.styleable.FButton_shadowHeight) {
                 mShadowHeight = typedArray.getDimensionPixelSize(attr, R.dimen.default_shadow_height);
             } else if (attr == R.styleable.FButton_cornerRadius) {
@@ -146,22 +131,26 @@ public class FButton extends Button implements View.OnTouchListener {
     }
 
     public void refresh() {
-        //Refresh button interface
-        //Create drawable from color
-        StateListDrawable stateListDrawable = new StateListDrawable();
-
-        int backgroundColor = getResources().getColor(R.color.button_danger_color);
-//        int shadowColor = getResources().getColor(R.color.button_twitter_shadow_color);
-
         float[] hsv = new float[3];
-        Color.colorToHSV(backgroundColor, hsv);
+        Color.colorToHSV(mButtonColor, hsv);
         hsv[2] *= 0.8f; // value component
-        int shadowColor = Color.HSVToColor(hsv);
+        //if shadow color was not defined, generate shadow color = 80% brightness
+        if (!isShadowColorDefined) {
+            mShadowColor = Color.HSVToColor(hsv);
+        }
 
-        int transparent = getResources().getColor(R.color.button_transparent_color);
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        if (isShadowEnabled) {
+            //Shadow is enabled
+            stateListDrawable.addState(new int[]{-android.R.attr.state_pressed}, createDrawable(mCornerRadius, mButtonColor, mShadowColor));
+            stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, createDrawable(mCornerRadius, Color.TRANSPARENT, mButtonColor));
+        } else {
+            //Shadow is disabled
+            mShadowHeight = 0;
+            stateListDrawable.addState(new int[]{-android.R.attr.state_pressed}, createDrawable(mCornerRadius, mButtonColor, Color.TRANSPARENT));
+            stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, createDrawable(mCornerRadius, mShadowColor, Color.TRANSPARENT));
+        }
 
-        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed}, createDrawable(10, backgroundColor, shadowColor));
-        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, createDrawable(10, transparent, backgroundColor));
         //Set button background
         if (Build.VERSION.SDK_INT >= 16) {
             this.setBackground(stateListDrawable);
@@ -179,17 +168,15 @@ public class FButton extends Button implements View.OnTouchListener {
         ShapeDrawable topShapeDrawable = new ShapeDrawable(topRoundRect);
         topShapeDrawable.getPaint().setColor(topColor);
         //Bottom
-
         RoundRectShape roundRectShape = new RoundRectShape(outerRadius, null, null);
         ShapeDrawable bottomShapeDrawable = new ShapeDrawable(roundRectShape);
         bottomShapeDrawable.getPaint().setColor(bottomColor);
-
-
+        //Create array
         Drawable[] drawArray = {bottomShapeDrawable, topShapeDrawable};
         LayerDrawable layerDrawable = new LayerDrawable(drawArray);
-
-        layerDrawable.setLayerInset(0, 0, 10, 0, 0);  /*index, left, top, right, bottom*/
-        layerDrawable.setLayerInset(1, 0, 0, 0, 10);  /*index, left, top, right, bottom*/
+        //Set shadow height
+        layerDrawable.setLayerInset(0, 0, mShadowHeight, 0, 0);  /*index, left, top, right, bottom*/
+        layerDrawable.setLayerInset(1, 0, 0, 0, mShadowHeight);  /*index, left, top, right, bottom*/
 
         return layerDrawable;
     }
