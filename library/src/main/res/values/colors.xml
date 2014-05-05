@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="button_twitter_color">#3eadeb</color>
-    <color name="button_twitter_shadow_color">#ff3493c8</color>
+    <color name="button_default_color">#3eadeb</color>
+    <color name="button_default_shadow_color">#ff3493c8</color>
 
     <color name="button_primary_color">#54b59a</color>
     <color name="button_warning_color">#edc233</color>

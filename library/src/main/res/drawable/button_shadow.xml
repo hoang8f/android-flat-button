@@ -24,7 +24,7 @@
             <size
                 android:width="23dp"
                 android:height="23dp" />
-            <solid android:color="@color/button_twitter_color" />
+            <solid android:color="@color/button_default_color" />
             <corners android:radius="@dimen/default_conner_radius" />
         </shape>
     </item>
