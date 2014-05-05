@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:top="0dp"
+        android:left="0dp"
+        android:bottom="0dp"
+        android:right="0dp">
+        <shape>
+            <size
+                android:width="23dp"
+                android:height="23dp" />
+            <solid android:color="#ff3493c8" />
+            <corners android:radius="@dimen/default_conner_radius" />
+        </shape>
+    </item>
+
+    <item
+        android:top="0dp"
+        android:left="0dp"
+        android:bottom="@dimen/default_shadow_height"
+        android:right="0dp">
+        <shape>
+            <size
+                android:width="23dp"
+                android:height="23dp" />
+            <solid android:color="@color/button_twitter_color" />
+            <corners android:radius="@dimen/default_conner_radius" />
+        </shape>
+    </item>
+</layer-list>

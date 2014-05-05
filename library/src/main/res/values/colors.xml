@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_twitter_color">#3eadeb</color>
+    <color name="button_twitter_shadow_color">#ff3493c8</color>
+
+    <color name="button_primary_color">#54b59a</color>
+    <color name="button_warning_color">#edc233</color>
+    <color name="button_danger_color">#d95f49</color>
+    <color name="button_success_color">#64c271</color>
+    <color name="button_inverse_color">#374a5d</color>
+    <color name="button_info_color">#489ad8</color>
+    <color name="button_disabled_color">#d1d5d8</color>
+    <color name="button_holo_color">#ff33b5e5</color>
+    <color name="button_transparent_color">@android:color/transparent</color>
+</resources>
