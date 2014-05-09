@@ -95,10 +95,6 @@ public class FButton extends Button implements View.OnTouchListener {
         return false;
     }
 
-    public void setShadowEnabled(boolean isShadowEnabled) {
-        this.isShadowEnabled = isShadowEnabled;
-    }
-
     private void init() {
         //Init default values
         isShadowEnabled = true;
@@ -188,6 +184,11 @@ public class FButton extends Button implements View.OnTouchListener {
         return layerDrawable;
     }
 
+    //Setter
+    public void setShadowEnabled(boolean isShadowEnabled) {
+        this.isShadowEnabled = isShadowEnabled;
+    }
+
     public void setButtonColor(int buttonColor) {
         this.mButtonColor = buttonColor;
         refresh();
@@ -203,5 +204,26 @@ public class FButton extends Button implements View.OnTouchListener {
 
     public void setCornerRadius(int cornerRadius) {
         this.mCornerRadius = cornerRadius;
+    }
+
+    //Getter
+    public boolean isShadowEnabled() {
+        return isShadowEnabled;
+    }
+
+    public int getButtonColor() {
+        return mButtonColor;
+    }
+
+    public int getShadowColor() {
+        return mShadowColor;
+    }
+
+    public int getShadowHeight() {
+        return mShadowHeight;
+    }
+
+    public int getCornerRadius() {
+        return mCornerRadius;
     }
 }
