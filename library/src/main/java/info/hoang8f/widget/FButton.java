@@ -28,6 +28,9 @@ public class FButton extends Button implements View.OnTouchListener {
     private int mShadowColor;
     private int mShadowHeight;
     private int mCornerRadius;
+    //Padding
+    private int mPaddingLeft;
+    private int mPaddingRight;
 
     boolean isShadowColorDefined = false;
 
@@ -56,6 +59,9 @@ public class FButton extends Button implements View.OnTouchListener {
         super.onFinishInflate();
         //Update background color
         refresh();
+        if (isShadowEnabled) {
+            this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, mShadowHeight);
+        }
     }
 
     @Override
@@ -63,10 +69,8 @@ public class FButton extends Button implements View.OnTouchListener {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (isShadowEnabled) {
-                    this.setPadding(getResources().getDimensionPixelSize(R.dimen.default_padding_left),
-                            getResources().getDimensionPixelSize(R.dimen.default_padding_top),
-                            getResources().getDimensionPixelSize(R.dimen.default_padding_right),
-                            0);
+                    this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, 0);
+
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -74,10 +78,7 @@ public class FButton extends Button implements View.OnTouchListener {
                 view.getLocalVisibleRect(r);
                 if (!r.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                     if (isShadowEnabled) {
-                        this.setPadding(getResources().getDimensionPixelSize(R.dimen.default_padding_left),
-                                getResources().getDimensionPixelSize(R.dimen.default_shadow_height),
-                                getResources().getDimensionPixelSize(R.dimen.default_padding_right),
-                                getResources().getDimensionPixelSize(R.dimen.default_shadow_height));
+                        this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, mShadowHeight);
                     }
                 }
                 break;
@@ -85,10 +86,7 @@ public class FButton extends Button implements View.OnTouchListener {
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 if (isShadowEnabled) {
-                    this.setPadding(getResources().getDimensionPixelSize(R.dimen.default_padding_left),
-                            getResources().getDimensionPixelSize(R.dimen.default_shadow_height),
-                            getResources().getDimensionPixelSize(R.dimen.default_padding_right),
-                            getResources().getDimensionPixelSize(R.dimen.default_shadow_height));
+                    this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, mShadowHeight);
                 }
                 break;
         }
@@ -105,7 +103,7 @@ public class FButton extends Button implements View.OnTouchListener {
     }
 
     private void parseAttrs(Context context, AttributeSet attrs) {
-        //Load from attributes
+        //Load from custom attributes
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FButton);
         if (typedArray == null) return;
         for (int i = 0; i < typedArray.getIndexCount(); i++) {
@@ -124,6 +122,17 @@ public class FButton extends Button implements View.OnTouchListener {
             }
         }
         typedArray.recycle();
+
+        //Get paddingLeft, paddingRight
+        int[] attrsArray = new int[] {
+                android.R.attr.paddingLeft, // 0
+                android.R.attr.paddingRight, // 1
+        };
+        TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray);
+        if (ta == null) return;
+        mPaddingLeft = ta.getDimensionPixelSize(0, 0);
+        mPaddingRight = ta.getDimensionPixelSize(1, 0);
+        ta.recycle();
     }
 
     public void refresh() {
