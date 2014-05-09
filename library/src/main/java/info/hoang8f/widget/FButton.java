@@ -174,11 +174,13 @@ public class FButton extends Button implements View.OnTouchListener {
         //Create array
         Drawable[] drawArray = {bottomShapeDrawable, topShapeDrawable};
         LayerDrawable layerDrawable = new LayerDrawable(drawArray);
+
         //Set shadow height
-        layerDrawable.setLayerInset(0, 0, mShadowHeight, 0, 0);  /*index, left, top, right, bottom*/
-        if (bottomColor != Color.TRANSPARENT) {
+        if (isShadowEnabled && topColor != Color.TRANSPARENT) {
+            //unpressed drawable
             layerDrawable.setLayerInset(0, 0, 0, 0, 0);  /*index, left, top, right, bottom*/
         } else {
+            //pressed drawable
             layerDrawable.setLayerInset(0, 0, mShadowHeight, 0, 0);  /*index, left, top, right, bottom*/
         }
         layerDrawable.setLayerInset(1, 0, 0, 0, mShadowHeight);  /*index, left, top, right, bottom*/
