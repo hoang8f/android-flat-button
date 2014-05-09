@@ -176,8 +176,30 @@ public class FButton extends Button implements View.OnTouchListener {
         LayerDrawable layerDrawable = new LayerDrawable(drawArray);
         //Set shadow height
         layerDrawable.setLayerInset(0, 0, mShadowHeight, 0, 0);  /*index, left, top, right, bottom*/
+        if (bottomColor != Color.TRANSPARENT) {
+            layerDrawable.setLayerInset(0, 0, 0, 0, 0);  /*index, left, top, right, bottom*/
+        } else {
+            layerDrawable.setLayerInset(0, 0, mShadowHeight, 0, 0);  /*index, left, top, right, bottom*/
+        }
         layerDrawable.setLayerInset(1, 0, 0, 0, mShadowHeight);  /*index, left, top, right, bottom*/
 
         return layerDrawable;
+    }
+
+    public void setButtonColor(int buttonColor) {
+        this.mButtonColor = buttonColor;
+        refresh();
+    }
+
+    public void setShadowColor(int shadowColor) {
+        this.mShadowColor = shadowColor;
+    }
+
+    public void setShadowHeight(int shadowHeight) {
+        this.mShadowHeight = shadowHeight;
+    }
+
+    public void setCornerRadius(int cornerRadius) {
+        this.mCornerRadius = cornerRadius;
     }
 }
