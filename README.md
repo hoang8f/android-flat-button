@@ -21,31 +21,38 @@ Copy/merge the following files to corresponding folder/file:
 Customizable attributes
 -----------------------
 
-|               | default value                  | xml           | java                                           |
-|---------------|--------------------------------|---------------|------------------------------------------------|
-| button color  | #3eadeb                        | buttonColor   | void setButtonColor(int buttonColor)           |
-| enable shadow | true                           | shadowEnabled | void setShadowEnabled(boolean isShadowEnabled) |
-| shadow color  | 80% brightness of button color | shadowColor   | void setShadowColor(int shadowColor)           |
-| shadow height | 4dp                            | shadowHeight  | void setShadowHeight(int shadowHeight)         |
-| corner radius | 8dp                            | cornerRadius  | void setCornerRadius(int cornerRadius)         |
+|               |   default value   | xml           |                 java                |
+|:-------------:|:-----------------:|---------------|:-----------------------------------:|
+| button color  |      #3eadeb      | buttonColor   | setButtonColor(int color)           |
+| enable shadow |        true       | shadowEnabled | setShadowEnabled(boolean isEnabled) |
+| shadow color  |  Auto generated   | shadowColor   | setShadowColor(int color)           |
+|               | from button color |               |                                     |
+| shadow height |        4dp        | shadowHeight  | setShadowHeight(int height)         |
+| corner radius |        8dp        | cornerRadius  | setCornerRadius(int radius)         |
 
 Usage
 -----
-### via xml
+If the default values of custom attribues did not meet your requirement. You can easyly re-config that attribute. This is sample code that you can refer. you can also browse demo app for more details.
+
+### via xml (sample)
 -  Define `xmlns:fbutton="http://schemas.android.com/apk/res-auto"` on root of your xml file
 
 ```xml
 <info.hoang8f.widget.FButton
     ...
-    fbutton:shadowEnabled="true"
-    fbutton:buttonColor="@color/color_turquoise"
+   fbutton:buttonColor="@color/color_concrete"
+   fbutton:shadowColor="@color/color_asbestos"
+   fbutton:shadowEnabled="true"
+   fbutton:shadowHeight="5dp"
+   android:shadowRadius="5dp"
     ...
      />
 ```
 
-### via code
+### via code (sample)
 ```java
 disabledBtn.setButtonColor(getResources().getColor(R.color.color_concrete));
+disabledBtn.setShadowColor(getResources().getColor(R.color.color_asbestos));
 disabledBtn.setShadowEnabled(true);
 disabledBtn.setShadowHeight(5);
 disabledBtn.setCornerRadius(5);
