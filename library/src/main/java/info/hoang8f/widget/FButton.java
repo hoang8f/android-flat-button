@@ -15,7 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import info.hoang8f.lvbutton.R;
+import info.hoang8f.fbutton.R;
 
 /**
  * Created by hoang8f on 5/5/14.
@@ -32,6 +32,8 @@ public class FButton extends Button implements View.OnTouchListener {
     //Native values
     private int mPaddingLeft;
     private int mPaddingRight;
+    private int mPaddingTop;
+    private int mPaddingBottom;
 
     boolean isShadowColorDefined = false;
 
@@ -66,26 +68,19 @@ public class FButton extends Button implements View.OnTouchListener {
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (isShadowEnabled) {
-                    this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, 0);
-
-                }
+                this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom);
                 break;
             case MotionEvent.ACTION_MOVE:
                 Rect r = new Rect();
                 view.getLocalVisibleRect(r);
                 if (!r.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                    if (isShadowEnabled) {
-                        this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, mShadowHeight);
-                    }
+                    this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom + mShadowHeight);
                 }
                 break;
             case MotionEvent.ACTION_OUTSIDE:
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                if (isShadowEnabled) {
-                    this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, mShadowHeight);
-                }
+                this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom + mShadowHeight);
                 break;
         }
         return false;
@@ -122,7 +117,7 @@ public class FButton extends Button implements View.OnTouchListener {
         typedArray.recycle();
 
         //Get paddingLeft, paddingRight
-        int[] attrsArray = new int[] {
+        int[] attrsArray = new int[]{
                 android.R.attr.paddingLeft,  // 0
                 android.R.attr.paddingRight, // 1
         };
@@ -131,6 +126,17 @@ public class FButton extends Button implements View.OnTouchListener {
         mPaddingLeft = ta.getDimensionPixelSize(0, 0);
         mPaddingRight = ta.getDimensionPixelSize(1, 0);
         ta.recycle();
+
+        //Get paddingTop, paddingBottom
+        int[] attrsArray2 = new int[]{
+                android.R.attr.paddingTop,   // 0
+                android.R.attr.paddingBottom,// 1
+        };
+        TypedArray ta1 = context.obtainStyledAttributes(attrs, attrsArray2);
+        if (ta1 == null) return;
+        mPaddingTop = ta.getDimensionPixelSize(0, 0);
+        mPaddingBottom = ta.getDimensionPixelSize(1, 0);
+        ta1.recycle();
     }
 
     public void refresh() {
@@ -162,9 +168,7 @@ public class FButton extends Button implements View.OnTouchListener {
         }
 
         //Set padding
-        if (isShadowEnabled) {
-            this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, mShadowHeight);
-        }
+        this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom + mShadowHeight);
     }
 
     private LayerDrawable createDrawable(int radius, int topColor, int bottomColor) {
@@ -199,6 +203,8 @@ public class FButton extends Button implements View.OnTouchListener {
     //Setter
     public void setShadowEnabled(boolean isShadowEnabled) {
         this.isShadowEnabled = isShadowEnabled;
+        setShadowHeight(0);
+        refresh();
     }
 
     public void setButtonColor(int buttonColor) {
@@ -208,14 +214,25 @@ public class FButton extends Button implements View.OnTouchListener {
 
     public void setShadowColor(int shadowColor) {
         this.mShadowColor = shadowColor;
+        refresh();
     }
 
     public void setShadowHeight(int shadowHeight) {
         this.mShadowHeight = shadowHeight;
+        refresh();
     }
 
     public void setCornerRadius(int cornerRadius) {
         this.mCornerRadius = cornerRadius;
+        refresh();
+    }
+
+    public void setFButtonPadding(int left, int top, int right, int bottom) {
+        mPaddingLeft = left;
+        mPaddingRight = right;
+        mPaddingTop = top;
+        mPaddingBottom = bottom;
+        refresh();
     }
 
     //Getter
