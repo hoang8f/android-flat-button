@@ -23,12 +23,13 @@ import info.hoang8f.lvbutton.R;
 
 public class FButton extends Button implements View.OnTouchListener {
 
+    //Custom values
     private boolean isShadowEnabled = true;
     private int mButtonColor;
     private int mShadowColor;
     private int mShadowHeight;
     private int mCornerRadius;
-    //Padding
+    //Native values
     private int mPaddingLeft;
     private int mPaddingRight;
 
@@ -59,9 +60,6 @@ public class FButton extends Button implements View.OnTouchListener {
         super.onFinishInflate();
         //Update background color
         refresh();
-        if (isShadowEnabled) {
-            this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, mShadowHeight);
-        }
     }
 
     @Override
@@ -125,7 +123,7 @@ public class FButton extends Button implements View.OnTouchListener {
 
         //Get paddingLeft, paddingRight
         int[] attrsArray = new int[] {
-                android.R.attr.paddingLeft, // 0
+                android.R.attr.paddingLeft,  // 0
                 android.R.attr.paddingRight, // 1
         };
         TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray);
@@ -161,6 +159,11 @@ public class FButton extends Button implements View.OnTouchListener {
             this.setBackground(stateListDrawable);
         } else {
             this.setBackgroundDrawable(stateListDrawable);
+        }
+
+        //Set padding
+        if (isShadowEnabled) {
+            this.setPadding(mPaddingLeft, mShadowHeight, mPaddingRight, mShadowHeight);
         }
     }
 
