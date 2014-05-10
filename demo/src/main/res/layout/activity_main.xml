@@ -53,7 +53,7 @@
             android:layout_gravity="right|top" />
 
         <info.hoang8f.widget.FButton
-            android:id="@+id/danger_button"
+            android:id="@+id/inverse_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -65,7 +65,7 @@
             android:layout_gravity="right|center_vertical" />
 
         <info.hoang8f.widget.FButton
-            android:id="@+id/disabled_button"
+            android:id="@+id/danger_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -77,14 +77,12 @@
             android:layout_gravity="left|bottom" />
 
         <info.hoang8f.widget.FButton
-            android:id="@+id/inverse_button"
+            android:id="@+id/disabled_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:minWidth="@dimen/demo_button_min_width"
             android:textColor="@android:color/white"
-            fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/color_silver"
             android:text="Disabled Button"
             android:layout_gravity="right|bottom" />
 

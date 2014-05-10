@@ -3,6 +3,7 @@ package info.hoang8f.fbutton.demo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
@@ -26,7 +27,8 @@ import info.hoang8f.widget.FButton;
 public class MainActivity extends ActionBarActivity
         implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
-    private FButton twitter;
+    private FButton twitterBtn;
+    private FButton disabledBtn;
     private TextView shadowHeight;
     private SeekBar shadowHeightBar;
 
@@ -34,7 +36,8 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        twitter = (FButton) findViewById(R.id.f_twitter_button);
+        twitterBtn = (FButton) findViewById(R.id.f_twitter_button);
+        disabledBtn = (FButton) findViewById(R.id.disabled_button);
         Button changeColorBtn = (Button) findViewById(R.id.change_color_button);
         Switch shadowSwitch = (Switch) findViewById(R.id.enable_shadow_switch);
         shadowHeightBar = (SeekBar) findViewById(R.id.shadow_height_seekbar);
@@ -43,6 +46,12 @@ public class MainActivity extends ActionBarActivity
         changeColorBtn.setOnClickListener(this);
         shadowSwitch.setOnCheckedChangeListener(this);
         shadowHeightBar.setOnSeekBarChangeListener(this);
+
+        //Config disabled button
+        disabledBtn.setButtonColor(getResources().getColor(R.color.color_concrete));
+        disabledBtn.setShadowEnabled(true);
+        disabledBtn.setShadowHeight(5);
+        disabledBtn.setCornerRadius(5);
     }
 
 
@@ -93,7 +102,7 @@ public class MainActivity extends ActionBarActivity
 
                 picker.addSVBar(svBar);
                 picker.addOpacityBar(opacityBar);
-                picker.setOldCenterColor(twitter.getButtonColor());
+                picker.setOldCenterColor(twitterBtn.getButtonColor());
                 picker.setOnColorChangedListener(new ColorPicker.OnColorChangedListener() {
                     @Override
                     public void onColorChanged(int intColor) {
@@ -112,7 +121,7 @@ public class MainActivity extends ActionBarActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Update color
-                        twitter.setButtonColor(picker.getColor());
+                        twitterBtn.setButtonColor(picker.getColor());
                     }
                 });
                 builder.create().show();
@@ -122,7 +131,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        twitter.setShadowEnabled(isChecked);
+        twitterBtn.setShadowEnabled(isChecked);
         updateShadowHeight(shadowHeightBar.getProgress());
     }
 
@@ -135,7 +144,7 @@ public class MainActivity extends ActionBarActivity
     private void updateShadowHeight(int height) {
         //Convert from dp to pixel
         int shadowHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, getResources().getDisplayMetrics());
-        twitter.setShadowHeight(shadowHeight);
+        twitterBtn.setShadowHeight(shadowHeight);
     }
 
     @Override

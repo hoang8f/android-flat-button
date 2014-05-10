@@ -214,6 +214,7 @@ public class FButton extends Button implements View.OnTouchListener {
 
     public void setShadowColor(int shadowColor) {
         this.mShadowColor = shadowColor;
+        isShadowColorDefined = true;
         refresh();
     }
 
