@@ -2,11 +2,19 @@ package info.hoang8f.fbutton.demo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
@@ -15,16 +23,26 @@ import com.larswerkman.holocolorpicker.SVBar;
 
 import info.hoang8f.widget.FButton;
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends ActionBarActivity
+        implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
     private FButton twitter;
+    private TextView shadowHeight;
+    private SeekBar shadowHeightBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         twitter = (FButton) findViewById(R.id.f_twitter_button);
-        twitter.setOnClickListener(this);
+        Button changeColorBtn = (Button) findViewById(R.id.change_color_button);
+        Switch shadowSwitch = (Switch) findViewById(R.id.enable_shadow_switch);
+        shadowHeightBar = (SeekBar) findViewById(R.id.shadow_height_seekbar);
+        shadowHeight = (TextView) findViewById(R.id.shadow_height_value);
+
+        changeColorBtn.setOnClickListener(this);
+        shadowSwitch.setOnCheckedChangeListener(this);
+        shadowHeightBar.setOnSeekBarChangeListener(this);
     }
 
 
@@ -42,7 +60,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_github) {
+            Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(Config.GITHUB_URL));
+            startActivity(browse);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -51,7 +71,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.f_twitter_button:
+            case R.id.change_color_button:
 
                 //Create color picker view
                 View view = this.getLayoutInflater().inflate(R.layout.color_picker_dialog, null);
@@ -90,5 +110,33 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 builder.create().show();
                 break;
         }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        twitter.setShadowEnabled(isChecked);
+        updateShadowHeight(shadowHeightBar.getProgress());
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        shadowHeight.setText(progress + "dp");
+        updateShadowHeight(progress);
+    }
+
+    private void updateShadowHeight(int height) {
+        //Convert from dp to pixel
+        int shadowHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, getResources().getDisplayMetrics());
+        twitter.setShadowHeight(shadowHeight);
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }
