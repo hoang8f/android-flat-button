@@ -1,6 +1,7 @@
 package info.hoang8f.widget;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -89,10 +90,12 @@ public class FButton extends Button implements View.OnTouchListener {
     private void init() {
         //Init default values
         isShadowEnabled = true;
-        mButtonColor = getResources().getColor(R.color.button_default_color);
-        mShadowColor = getResources().getColor(R.color.button_default_shadow_color);
-        mShadowHeight = getResources().getDimensionPixelSize(R.dimen.default_shadow_height);
-        mCornerRadius = getResources().getDimensionPixelSize(R.dimen.default_conner_radius);
+        Resources resources = getResources();
+        if (resources == null) return;
+        mButtonColor = resources.getColor(R.color.button_default_color);
+        mShadowColor = resources.getColor(R.color.button_default_shadow_color);
+        mShadowHeight = resources.getDimensionPixelSize(R.dimen.default_shadow_height);
+        mCornerRadius = resources.getDimensionPixelSize(R.dimen.default_conner_radius);
     }
 
     private void parseAttrs(Context context, AttributeSet attrs) {
