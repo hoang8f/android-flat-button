@@ -62,7 +62,7 @@ disabledBtn.setCornerRadius(5);
 
 Color Swatches
 --------------
-For your convenience Swatches Preset by [designmono](http://designmodo.github.io/Flat-UI/) also defnied in this library
+For your convenience Swatches Preset by [designmono](http://designmodo.github.io/Flat-UI/) are also defined in this library
 ```xml
 //Color Swatches provided by http://designmodo.github.io/Flat-UI/
 <color name="color_turquoise">#1abc9c</color>
