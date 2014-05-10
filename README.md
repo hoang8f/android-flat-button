@@ -22,11 +22,10 @@ Customizable attributes
 -----------------------
 
 |               |   default value   | xml           |                 java                |
-|:-------------:|:-----------------:|---------------|:-----------------------------------:|
+|---------------|-------------------|---------------|-------------------------------------|
 | button color  |      #3eadeb      | buttonColor   | setButtonColor(int color)           |
 | enable shadow |        true       | shadowEnabled | setShadowEnabled(boolean isEnabled) |
-| shadow color  |  Auto generated   | shadowColor   | setShadowColor(int color)           |
-|               | from button color |               |                                     |
+| shadow color  |  Auto generated <br> from button color   | shadowColor   | setShadowColor(int color)           |
 | shadow height |        4dp        | shadowHeight  | setShadowHeight(int height)         |
 | corner radius |        8dp        | cornerRadius  | setCornerRadius(int radius)         |
 
@@ -44,7 +43,7 @@ If the default values of custom attribues did not meet your requirement. You can
    fbutton:shadowColor="@color/color_asbestos"
    fbutton:shadowEnabled="true"
    fbutton:shadowHeight="5dp"
-   android:shadowRadius="5dp"
+   fbutton:cornerRadius="5dp"
     ...
      />
 ```
