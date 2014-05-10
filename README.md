@@ -21,7 +21,7 @@ Copy/merge the following files to corresponding folder/file:
 Customizable attributes
 -----------------------
 
-|               |   default value   | xml           |                 java                |
+|  Attribute    |   default value   | xml           |                 java                |
 |---------------|-------------------|---------------|-------------------------------------|
 | button color  |      #3eadeb      | buttonColor   | setButtonColor(int color)           |
 | enable shadow |        true       | shadowEnabled | setShadowEnabled(boolean isEnabled) |
