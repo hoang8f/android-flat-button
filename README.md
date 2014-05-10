@@ -2,6 +2,9 @@ FButton
 =======
 FButton is a custom Button of Android with "Flat UI" concept. FButton's design get inspiration from [designmono](http://designmodo.github.io/Flat-UI/). This library is very small and highly customizable.
 
+Demo application on playstore:
+https://play.google.com/store/apps/details?id=info.hoang8f.fbutton.demo
+
 Screenshot
 ----------
 ![](https://raw.githubusercontent.com/hoang8f/android-flat-button/master/screenshot/screenshot.gif)
@@ -31,7 +34,7 @@ Customizable attributes
 
 Usage
 -----
-If the default values of custom attribues did not meet your requirement. You can easyly re-config that attribute. This is sample code that you can refer. you can also browse demo app for more details.
+If the default values of custom attribues did not meet your requirement, you can easily re-config that attributes. This is sample code that you can refer. you can also browse demo app for more details.
 
 ### via xml (sample)
 -  Define `xmlns:fbutton="http://schemas.android.com/apk/res-auto"` on root of your xml file
@@ -57,6 +60,32 @@ disabledBtn.setShadowHeight(5);
 disabledBtn.setCornerRadius(5);
 ```
 
+Color Swatches
+--------------
+For your convenience Swatches Preset by [designmono](http://designmodo.github.io/Flat-UI/) also defnied in this library
+```xml
+//Color Swatches provided by http://designmodo.github.io/Flat-UI/
+<color name="color_turquoise">#1abc9c</color>
+<color name="color_green_sea">#16a085</color>
+<color name="color_emerald">#2ecc71</color>
+<color name="color_nephritis">#27ae60</color>
+<color name="color_peter_river">#3498db</color>
+<color name="color_belize_hole">#2980b9</color>
+<color name="color_amethyst">#9b59b6</color>
+<color name="color_wisteria">#8e44ad</color>
+<color name="color_wet_asphalt">#34495e</color>
+<color name="color_midnight_blue">#2c3e50</color>
+<color name="color_sun_flower">#f1c40f</color>
+<color name="color_orange">#f39c12</color>
+<color name="color_carrot">#e67e22</color>
+<color name="color_pumpkin">#d35400</color>
+<color name="color_alizarin">#e74c3c</color>
+<color name="color_pomegranate">#c0392b</color>
+<color name="color_clouds">#ecf0f1</color>
+<color name="color_silver">#bdc3c7</color>
+<color name="color_concrete">#95a5a6</color>
+<color name="color_asbestos">#7f8c8d</color>
+```
 
 Credits
 -------
