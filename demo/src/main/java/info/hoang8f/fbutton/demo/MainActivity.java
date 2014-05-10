@@ -3,9 +3,9 @@ package info.hoang8f.fbutton.demo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -59,11 +59,19 @@ public class MainActivity extends ActionBarActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_github) {
-            Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(Config.GITHUB_URL));
-            startActivity(browse);
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_github:
+                Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(Config.GITHUB_URL));
+                startActivity(browse);
+                return true;
+            case R.id.action_social:
+                ShareCompat.IntentBuilder intentBuilder = ShareCompat.IntentBuilder.from(MainActivity.this);
+                intentBuilder.setChooserTitle("Choose Share App")
+                        .setType("text/plain")
+                        .setSubject("Flat button for android")
+                        .setText("A flat button library for android #AndroidFlat goo.gl/C6aLDi")
+                        .startChooser();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
