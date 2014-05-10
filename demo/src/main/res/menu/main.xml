@@ -1,10 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="info.hoang8f.lvbutton.demo.MainActivity" >
-    
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    tools:context="info.hoang8f.fbutton.demo.MainActivity">
+
+    <item
+        android:id="@+id/action_github"
+        android:title="@string/action_github"
+        android:icon="@drawable/ic_github_dark"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="always|withText" />
+
 </menu>
