@@ -12,7 +12,12 @@ Screenshot
 Including in your project
 -------------------------
 ###Using meven
-Deploying...
+FButton Library is pushed to [Maven Central](http://search.maven.org/#search|ga|1|android-segmented), so you just need to add the following dependency to your `build.gradle`.
+
+    dependencies {
+        compile 'info.hoang8f:android-segmented:1.0.0'
+    }
+
 
 ###Manually
 Copy/merge the following files to corresponding folder/file:
@@ -28,7 +33,7 @@ Customizable attributes
 |---------------|-------------------|---------------|-------------------------------------|
 | button color  |      #3eadeb      | buttonColor   | setButtonColor(int color)           |
 | enable shadow |        true       | shadowEnabled | setShadowEnabled(boolean isEnabled) |
-| shadow color  |  Auto generated <br> from button color   | shadowColor   | setShadowColor(int color)           |
+| shadow color  |  Automatically generated <br> from button color   | shadowColor   | setShadowColor(int color)           |
 | shadow height |        4dp        | shadowHeight  | setShadowHeight(int height)         |
 | corner radius |        8dp        | cornerRadius  | setCornerRadius(int radius)         |
 
