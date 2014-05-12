@@ -92,9 +92,9 @@ For your convenience Swatches Preset by [designmono](http://designmodo.github.io
 <color name="color_asbestos">#7f8c8d</color>
 ```
 
-Credits
+Developed By
 -------
-Author: Le Van Hoang (@hoang8f)
+Le Van Hoang (@hoang8f)
 
 License
 -------
