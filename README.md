@@ -11,7 +11,7 @@ Screenshot
 
 Including in your project
 -------------------------
-###Using meven
+###Using Maven
 FButton Library is pushed to [Maven Central](http://search.maven.org/#search|ga|1|fbutton), so you just need to add the following dependency to your `build.gradle`.
 
     dependencies {
