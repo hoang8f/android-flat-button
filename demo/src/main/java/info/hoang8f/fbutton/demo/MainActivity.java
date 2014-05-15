@@ -17,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.OpacityBar;
@@ -39,7 +40,7 @@ public class MainActivity extends ActionBarActivity
         twitterBtn = (FButton) findViewById(R.id.f_twitter_button);
         disabledBtn = (FButton) findViewById(R.id.disabled_button);
         Button changeColorBtn = (Button) findViewById(R.id.change_color_button);
-        Switch shadowSwitch = (Switch) findViewById(R.id.enable_shadow_switch);
+        ToggleButton shadowSwitch = (ToggleButton) findViewById(R.id.enable_shadow_switch);
         shadowHeightBar = (SeekBar) findViewById(R.id.shadow_height_seekbar);
         shadowHeight = (TextView) findViewById(R.id.shadow_height_value);
 
