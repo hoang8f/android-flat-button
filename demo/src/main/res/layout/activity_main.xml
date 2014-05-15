@@ -25,7 +25,7 @@
             android:minHeight="@dimen/demo_button_min_height"
             android:textColor="@android:color/white"
             fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/color_turquoise"
+            fbutton:buttonColor="@color/fbutton_color_turquoise"
             android:text="Primary Button"
             android:layout_gravity="left|top" />
 
@@ -38,7 +38,7 @@
             android:minHeight="@dimen/demo_button_min_height"
             android:textColor="@android:color/white"
             fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/color_sun_flower"
+            fbutton:buttonColor="@color/fbutton_color_sun_flower"
             android:text="Warning Button"
             android:layout_gravity="left|center_vertical" />
 
@@ -51,7 +51,7 @@
             android:minHeight="@dimen/demo_button_min_height"
             android:textColor="@android:color/white"
             fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/color_emerald"
+            fbutton:buttonColor="@color/fbutton_color_emerald"
             android:text="Success Button"
             android:layout_gravity="right|top" />
 
@@ -64,7 +64,7 @@
             android:minHeight="@dimen/demo_button_min_height"
             android:textColor="@android:color/white"
             fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/color_wet_asphalt"
+            fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
             android:text="Inverse Button"
             android:layout_gravity="right|center_vertical" />
 
@@ -77,7 +77,7 @@
             android:minHeight="@dimen/demo_button_min_height"
             android:textColor="@android:color/white"
             fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/color_alizarin"
+            fbutton:buttonColor="@color/fbutton_color_alizarin"
             android:text="Danger Button"
             android:layout_gravity="left|bottom" />
 

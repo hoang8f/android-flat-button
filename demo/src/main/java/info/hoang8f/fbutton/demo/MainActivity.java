@@ -3,7 +3,6 @@ package info.hoang8f.fbutton.demo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -49,7 +47,7 @@ public class MainActivity extends ActionBarActivity
         shadowHeightBar.setOnSeekBarChangeListener(this);
 
         //Config disabled button
-        disabledBtn.setButtonColor(getResources().getColor(R.color.color_concrete));
+        disabledBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_concrete));
         disabledBtn.setShadowEnabled(true);
         disabledBtn.setShadowHeight(5);
         disabledBtn.setCornerRadius(5);

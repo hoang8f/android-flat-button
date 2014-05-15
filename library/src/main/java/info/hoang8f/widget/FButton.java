@@ -92,10 +92,10 @@ public class FButton extends Button implements View.OnTouchListener {
         isShadowEnabled = true;
         Resources resources = getResources();
         if (resources == null) return;
-        mButtonColor = resources.getColor(R.color.button_default_color);
-        mShadowColor = resources.getColor(R.color.button_default_shadow_color);
-        mShadowHeight = resources.getDimensionPixelSize(R.dimen.default_shadow_height);
-        mCornerRadius = resources.getDimensionPixelSize(R.dimen.default_conner_radius);
+        mButtonColor = resources.getColor(R.color.fbutton_default_color);
+        mShadowColor = resources.getColor(R.color.fbutton_default_shadow_color);
+        mShadowHeight = resources.getDimensionPixelSize(R.dimen.fbutton_default_shadow_height);
+        mCornerRadius = resources.getDimensionPixelSize(R.dimen.fbutton_default_conner_radius);
     }
 
     private void parseAttrs(Context context, AttributeSet attrs) {
@@ -107,14 +107,14 @@ public class FButton extends Button implements View.OnTouchListener {
             if (attr == R.styleable.FButton_shadowEnabled) {
                 isShadowEnabled = typedArray.getBoolean(attr, true); //Default is true
             } else if (attr == R.styleable.FButton_buttonColor) {
-                mButtonColor = typedArray.getColor(attr, R.color.button_default_color);
+                mButtonColor = typedArray.getColor(attr, R.color.fbutton_default_color);
             } else if (attr == R.styleable.FButton_shadowColor) {
-                mShadowColor = typedArray.getColor(attr, R.color.button_default_shadow_color);
+                mShadowColor = typedArray.getColor(attr, R.color.fbutton_default_shadow_color);
                 isShadowColorDefined = true;
             } else if (attr == R.styleable.FButton_shadowHeight) {
-                mShadowHeight = typedArray.getDimensionPixelSize(attr, R.dimen.default_shadow_height);
+                mShadowHeight = typedArray.getDimensionPixelSize(attr, R.dimen.fbutton_default_shadow_height);
             } else if (attr == R.styleable.FButton_cornerRadius) {
-                mCornerRadius = typedArray.getDimensionPixelSize(attr, R.dimen.default_conner_radius);
+                mCornerRadius = typedArray.getDimensionPixelSize(attr, R.dimen.fbutton_default_conner_radius);
             }
         }
         typedArray.recycle();

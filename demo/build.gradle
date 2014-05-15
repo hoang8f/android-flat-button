@@ -22,7 +22,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.+'
     compile 'com.larswerkman:HoloColorPicker:1.4'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-//    compile project(':library')
-    compile 'info.hoang8f:fbutton:1.0.1-SNAPSHOT'
-
+    compile project(':library')
+//    compile 'info.hoang8f:fbutton:1.0.1-SNAPSHOT'
 }
