@@ -123,6 +123,16 @@
         android:layout_below="@id/f_twitter_button"
         android:text="Twitter color" />
 
+    <TextView
+        android:id="@+id/shadow_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/f_twitter_button"
+        android:layout_toRightOf="@id/change_color_button"
+        android:text="Shadow" />
+
     <ToggleButton
         android:id="@+id/enable_shadow_switch"
         android:layout_width="wrap_content"
@@ -130,7 +140,7 @@
         android:minHeight="55dp"
         android:layout_marginLeft="10dp"
         android:layout_below="@id/f_twitter_button"
-        android:layout_toRightOf="@id/change_color_button"
+        android:layout_toRightOf="@+id/shadow_label"
         android:checked="true"
         android:text="Shadow" />
 
