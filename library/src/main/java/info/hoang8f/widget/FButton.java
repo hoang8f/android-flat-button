@@ -35,6 +35,9 @@ public class FButton extends Button implements View.OnTouchListener {
     private int mPaddingRight;
     private int mPaddingTop;
     private int mPaddingBottom;
+    //Background drawable
+    private Drawable pressedDrawable;
+    private Drawable unpressedDrawable;
 
     boolean isShadowColorDefined = false;
 
@@ -69,18 +72,21 @@ public class FButton extends Button implements View.OnTouchListener {
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                updateBackground(pressedDrawable);
                 this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom);
                 break;
             case MotionEvent.ACTION_MOVE:
                 Rect r = new Rect();
                 view.getLocalVisibleRect(r);
                 if (!r.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                    updateBackground(pressedDrawable);
                     this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom + mShadowHeight);
                 }
                 break;
             case MotionEvent.ACTION_OUTSIDE:
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
+                updateBackground(unpressedDrawable);
                 this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom + mShadowHeight);
                 break;
         }
@@ -150,28 +156,28 @@ public class FButton extends Button implements View.OnTouchListener {
         if (!isShadowColorDefined) {
             mShadowColor = Color.HSVToColor(hsv);
         }
-
-        StateListDrawable stateListDrawable = new StateListDrawable();
+        //Create pressed background and unpressed background drawables
         if (isShadowEnabled) {
-            //Shadow is enabled
-            stateListDrawable.addState(new int[]{-android.R.attr.state_pressed}, createDrawable(mCornerRadius, mButtonColor, mShadowColor));
-            stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, createDrawable(mCornerRadius, Color.TRANSPARENT, mButtonColor));
+            pressedDrawable = createDrawable(mCornerRadius, Color.TRANSPARENT, mButtonColor);
+            unpressedDrawable = createDrawable(mCornerRadius, mButtonColor, mShadowColor);
         } else {
-            //Shadow is disabled
             mShadowHeight = 0;
-            stateListDrawable.addState(new int[]{-android.R.attr.state_pressed}, createDrawable(mCornerRadius, mButtonColor, Color.TRANSPARENT));
-            stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, createDrawable(mCornerRadius, mShadowColor, Color.TRANSPARENT));
+            pressedDrawable = createDrawable(mCornerRadius, mShadowColor, Color.TRANSPARENT);
+            unpressedDrawable = createDrawable(mCornerRadius, mButtonColor, Color.TRANSPARENT);
         }
-
-        //Set button background
-        if (Build.VERSION.SDK_INT >= 16) {
-            this.setBackground(stateListDrawable);
-        } else {
-            this.setBackgroundDrawable(stateListDrawable);
-        }
-
+        updateBackground(unpressedDrawable);
         //Set padding
         this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom + mShadowHeight);
+    }
+
+    private void updateBackground(Drawable background) {
+        if (background == null) return;
+        //Set button background
+        if (Build.VERSION.SDK_INT >= 16) {
+            this.setBackground(background);
+        } else {
+            this.setBackgroundDrawable(background);
+        }
     }
 
     private LayerDrawable createDrawable(int radius, int topColor, int bottomColor) {
