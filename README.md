@@ -15,7 +15,7 @@ Including in your project
 FButton Library is pushed to [Maven Central](http://search.maven.org/#search|ga|1|fbutton), so you just need to add the following dependency to your `build.gradle`.
 
     dependencies {
-        compile 'info.hoang8f:fbutton:1.0.2'
+        compile 'info.hoang8f:fbutton:1.0.4'
     }
 
 
