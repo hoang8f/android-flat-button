@@ -1,173 +1,179 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
     tools:context="info.hoang8f.fbutton.demo.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/basic_button"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_marginTop="15dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <FrameLayout
+            android:id="@+id/basic_button"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="15dp">
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/primary_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
+                android:layout_margin="10dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="Primary Button"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_turquoise"
+                fbutton:shadowEnabled="true" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/warning_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_margin="10dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="Warning Button"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_sun_flower"
+                fbutton:shadowEnabled="true" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/success_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:layout_margin="10dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="Success Button"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_emerald"
+                fbutton:shadowEnabled="true" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/inverse_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="10dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="Inverse Button"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/danger_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|bottom"
+                android:layout_margin="10dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="Danger Button"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_alizarin"
+                fbutton:shadowEnabled="true" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/disabled_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_margin="10dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="Disabled Button"
+                android:textColor="@android:color/white" />
+
+        </FrameLayout>
+
 
         <info.hoang8f.widget.FButton
-            android:id="@+id/primary_button"
+            android:id="@+id/f_twitter_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:minWidth="@dimen/demo_button_min_width"
-            android:minHeight="@dimen/demo_button_min_height"
+            android:layout_below="@id/basic_button"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:drawableLeft="@drawable/twitter"
+            android:drawablePadding="0dp"
+            android:minHeight="80dp"
+            android:minWidth="250dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="20dp"
+            android:paddingTop="-5dp"
+            android:text="Twitter"
             android:textColor="@android:color/white"
+            fbutton:cornerRadius="15dp"
             fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/fbutton_color_turquoise"
-            android:text="Primary Button"
-            android:layout_gravity="left|top" />
+            fbutton:shadowHeight="6dp" />
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/warning_button"
+        <Button
+            android:id="@+id/change_color_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:minWidth="@dimen/demo_button_min_width"
-            android:minHeight="@dimen/demo_button_min_height"
-            android:textColor="@android:color/white"
-            fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/fbutton_color_sun_flower"
-            android:text="Warning Button"
-            android:layout_gravity="left|center_vertical" />
+            android:layout_below="@id/f_twitter_button"
+            android:minHeight="55dp"
+            android:text="Twitter color" />
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/success_button"
+        <TextView
+            android:id="@+id/shadow_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:minWidth="@dimen/demo_button_min_width"
-            android:minHeight="@dimen/demo_button_min_height"
-            android:textColor="@android:color/white"
-            fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/fbutton_color_emerald"
-            android:text="Success Button"
-            android:layout_gravity="right|top" />
+            android:layout_below="@id/f_twitter_button"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/change_color_button"
+            android:text="Shadow" />
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/inverse_button"
+        <ToggleButton
+            android:id="@+id/enable_shadow_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:minWidth="@dimen/demo_button_min_width"
-            android:minHeight="@dimen/demo_button_min_height"
-            android:textColor="@android:color/white"
-            fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
-            android:text="Inverse Button"
-            android:layout_gravity="right|center_vertical" />
+            android:layout_below="@id/f_twitter_button"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/shadow_label"
+            android:checked="true"
+            android:minHeight="55dp"
+            android:text="Shadow" />
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/danger_button"
+        <TextView
+            android:id="@+id/shadow_height_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:minWidth="@dimen/demo_button_min_width"
-            android:minHeight="@dimen/demo_button_min_height"
-            android:textColor="@android:color/white"
-            fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/fbutton_color_alizarin"
-            android:text="Danger Button"
-            android:layout_gravity="left|bottom" />
+            android:layout_below="@id/change_color_button"
+            android:layout_margin="5dp"
+            android:text="Shadow height: " />
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/disabled_button"
+        <TextView
+            android:id="@+id/shadow_height_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/change_color_button"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/shadow_height_label"
+            android:text="4dp" />
+
+        <SeekBar
+            android:id="@+id/shadow_height_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shadow_height_label"
             android:layout_margin="10dp"
-            android:minWidth="@dimen/demo_button_min_width"
-            android:minHeight="@dimen/demo_button_min_height"
-            android:textColor="@android:color/white"
-            android:text="Disabled Button"
-            android:layout_gravity="right|bottom" />
+            android:max="10"
+            android:progress="4" />
 
-    </FrameLayout>
+    </RelativeLayout>
 
-
-    <info.hoang8f.widget.FButton
-        android:id="@+id/f_twitter_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="80dp"
-        android:minWidth="250dp"
-        android:layout_margin="20dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="20dp"
-        android:paddingTop="-5dp"
-        android:layout_below="@id/basic_button"
-        android:layout_centerHorizontal="true"
-        android:drawableLeft="@drawable/twitter"
-        android:drawablePadding="0dp"
-        android:textColor="@android:color/white"
-        fbutton:shadowEnabled="true"
-        fbutton:cornerRadius="15dp"
-        fbutton:shadowHeight="6dp"
-        android:text="Twitter" />
-
-    <Button
-        android:id="@+id/change_color_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="55dp"
-        android:layout_below="@id/f_twitter_button"
-        android:text="Twitter color" />
-
-    <TextView
-        android:id="@+id/shadow_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/f_twitter_button"
-        android:layout_toRightOf="@id/change_color_button"
-        android:text="Shadow" />
-
-    <ToggleButton
-        android:id="@+id/enable_shadow_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="55dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/f_twitter_button"
-        android:layout_toRightOf="@+id/shadow_label"
-        android:checked="true"
-        android:text="Shadow" />
-
-    <TextView
-        android:id="@+id/shadow_height_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_below="@id/change_color_button"
-        android:text="Shadow height: " />
-
-    <TextView
-        android:id="@+id/shadow_height_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_below="@id/change_color_button"
-        android:layout_toRightOf="@id/shadow_height_label"
-        android:text="4dp" />
-
-    <SeekBar
-        android:id="@+id/shadow_height_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_below="@id/shadow_height_label"
-        android:progress="4"
-        android:max="10" />
-
-</RelativeLayout>
+</ScrollView>
