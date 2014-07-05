@@ -143,8 +143,8 @@ public class FButton extends Button implements View.OnTouchListener {
         };
         TypedArray ta1 = context.obtainStyledAttributes(attrs, attrsArray2);
         if (ta1 == null) return;
-        mPaddingTop = ta.getDimensionPixelSize(0, 0);
-        mPaddingBottom = ta.getDimensionPixelSize(1, 0);
+        mPaddingTop = ta1.getDimensionPixelSize(0, 0);
+        mPaddingBottom = ta1.getDimensionPixelSize(1, 0);
         ta1.recycle();
     }
 
