@@ -79,7 +79,7 @@ public class FButton extends Button implements View.OnTouchListener {
                 Rect r = new Rect();
                 view.getLocalVisibleRect(r);
                 if (!r.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                    updateBackground(pressedDrawable);
+                    updateBackground(unpressedDrawable);
                     this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom + mShadowHeight);
                 }
                 break;
