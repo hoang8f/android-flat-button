@@ -8,7 +8,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -78,7 +77,8 @@ public class FButton extends Button implements View.OnTouchListener {
             case MotionEvent.ACTION_MOVE:
                 Rect r = new Rect();
                 view.getLocalVisibleRect(r);
-                if (!r.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                if (!r.contains((int) motionEvent.getX(), (int) motionEvent.getY() + 3 * mShadowHeight) &&
+                        !r.contains((int) motionEvent.getX(), (int) motionEvent.getY() - 3 * mShadowHeight)) {
                     updateBackground(unpressedDrawable);
                     this.setPadding(mPaddingLeft, mPaddingTop + mShadowHeight, mPaddingRight, mPaddingBottom + mShadowHeight);
                 }
