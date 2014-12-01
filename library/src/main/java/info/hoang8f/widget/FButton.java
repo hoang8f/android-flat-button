@@ -149,12 +149,13 @@ public class FButton extends Button implements View.OnTouchListener {
     }
 
     public void refresh() {
+        int alpha = Color.alpha(mButtonColor);
         float[] hsv = new float[3];
         Color.colorToHSV(mButtonColor, hsv);
         hsv[2] *= 0.8f; // value component
         //if shadow color was not defined, generate shadow color = 80% brightness
         if (!isShadowColorDefined) {
-            mShadowColor = Color.HSVToColor(hsv);
+            mShadowColor = Color.HSVToColor(alpha, hsv);
         }
         //Create pressed background and unpressed background drawables
         if (isShadowEnabled) {
