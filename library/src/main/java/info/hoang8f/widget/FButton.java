@@ -158,13 +158,23 @@ public class FButton extends Button implements View.OnTouchListener {
             mShadowColor = Color.HSVToColor(alpha, hsv);
         }
         //Create pressed background and unpressed background drawables
-        if (isShadowEnabled) {
-            pressedDrawable = createDrawable(mCornerRadius, Color.TRANSPARENT, mButtonColor);
-            unpressedDrawable = createDrawable(mCornerRadius, mButtonColor, mShadowColor);
+		
+        if (this.isEnabled()) {
+            if (isShadowEnabled) {
+                pressedDrawable = createDrawable(mCornerRadius, Color.TRANSPARENT, mButtonColor);
+                unpressedDrawable = createDrawable(mCornerRadius, mButtonColor, mShadowColor);
+            } else {
+                mShadowHeight = 0;
+                pressedDrawable = createDrawable(mCornerRadius, mShadowColor, Color.TRANSPARENT);
+                unpressedDrawable = createDrawable(mCornerRadius, mButtonColor, Color.TRANSPARENT);
+            }
         } else {
-            mShadowHeight = 0;
-            pressedDrawable = createDrawable(mCornerRadius, mShadowColor, Color.TRANSPARENT);
-            unpressedDrawable = createDrawable(mCornerRadius, mButtonColor, Color.TRANSPARENT);
+            Color.colorToHSV(mButtonColor, hsv);
+            hsv[1] *= 0.25f; // saturation component
+            int disabledColor = mShadowColor = Color.HSVToColor(alpha, hsv);
+			// Disabled button does not have shadow
+            pressedDrawable = createDrawable(mCornerRadius, disabledColor, Color.TRANSPARENT);
+            unpressedDrawable = createDrawable(mCornerRadius, disabledColor, Color.TRANSPARENT);
         }
         updateBackground(unpressedDrawable);
         //Set padding
@@ -180,7 +190,6 @@ public class FButton extends Button implements View.OnTouchListener {
             this.setBackgroundDrawable(background);
         }
     }
-
     private LayerDrawable createDrawable(int radius, int topColor, int bottomColor) {
 
         float[] outerRadius = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
@@ -243,6 +252,12 @@ public class FButton extends Button implements View.OnTouchListener {
         mPaddingRight = right;
         mPaddingTop = top;
         mPaddingBottom = bottom;
+        refresh();
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
         refresh();
     }
 
