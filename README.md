@@ -11,7 +11,7 @@ Screenshot
 
 Including in your project
 -------------------------
-###Using Maven
+### Using Maven
 FButton Library is pushed to [Maven Central](http://search.maven.org/#search|ga|1|fbutton), so you just need to add the following dependency to your `build.gradle`.
 
     dependencies {
@@ -19,7 +19,7 @@ FButton Library is pushed to [Maven Central](http://search.maven.org/#search|ga|
     }
 
 
-###Manually
+### Manually
 Copy/merge the following files to corresponding folder/file:
    + info/hoang8f/widget/FButton.java
    + res/values/attrs.xml
