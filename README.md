@@ -17,8 +17,7 @@ FButton Library is pushed to [Maven Central](http://search.maven.org/#search|ga|
     dependencies {
         compile 'info.hoang8f:fbutton:1.0.5'
     }
-
-
+    
 ###Manually
 Copy/merge the following files to corresponding folder/file:
    + info/hoang8f/widget/FButton.java
